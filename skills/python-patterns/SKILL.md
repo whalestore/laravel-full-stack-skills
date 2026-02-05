@@ -1,11 +1,11 @@
 ---
 name: python-patterns
-description: Pythonic idioms, PEP 8 standards, type hints, and best practices for building robust, efficient, and maintainable Python applications.
+description: Python 辅助脚本开发模式，用于构建自动化脚本、工具和辅助程序。
 ---
 
-# Python Development Patterns
+# Python 辅助脚本开发模式
 
-Idiomatic Python patterns and best practices for building robust, efficient, and maintainable applications.
+Python 脚本编写最佳实践，适用于自动化工具、部署脚本和辅助程序开发。
 
 ## When to Activate
 

@@ -1,11 +1,11 @@
 ---
 name: python-testing
-description: Python testing strategies using pytest, TDD methodology, fixtures, mocking, parametrization, and coverage requirements.
+description: Python 辅助脚本测试策略，使用 pytest 进行自动化脚本和工具的测试。
 ---
 
-# Python Testing Patterns
+# Python 脚本测试模式
 
-Comprehensive testing strategies for Python applications using pytest, TDD methodology, and best practices.
+适用于辅助脚本和自动化工具的 pytest 测试策略和最佳实践。
 
 ## When to Activate
 
