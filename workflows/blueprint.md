@@ -37,7 +37,37 @@ description: 创建、扫描或修改项目蓝图
 ...
 ```
 
-### 步骤 3: 规划开发阶段
+### 步骤 3: UI 设计规范 (Shadcn UI)
+
+为每个模块定义 UI 组件：
+
+```markdown
+## UI 组件规划
+
+### 布局组件
+- Sidebar (侧边栏导航)
+- Header (顶部导航)
+- Card (内容卡片)
+
+### 表单组件
+- Input, Label, Button
+- Select, Checkbox, Switch
+- Form validation states
+
+### 数据展示
+- Table (数据表格)
+- Badge (状态标签)
+- Pagination (分页)
+
+### 反馈组件
+- Toast (消息提示)
+- Dialog (对话框)
+- AlertDialog (确认框)
+```
+
+> 参考技能: `skills/shadcn-ui/SKILL.md`
+
+### 步骤 4: 规划开发阶段
 
 生成迭代计划：
 
@@ -46,8 +76,9 @@ description: 创建、扫描或修改项目蓝图
 
 ### Phase 1: 基础框架 (预计 1 周)
 - 项目初始化
+- Shadcn UI 配置
 - 用户认证
-- 基础 UI
+- 基础布局
 
 ### Phase 2: 核心功能 (预计 2 周)
 - 功能 A
@@ -58,7 +89,7 @@ description: 创建、扫描或修改项目蓝图
 - 性能优化
 ```
 
-### 步骤 4: 生成蓝图文档
+### 步骤 5: 生成蓝图文档
 
 创建 `blueprint.md`。
 
@@ -155,10 +186,12 @@ php artisan test --coverage --coverage-clover=coverage.xml
 | 指标 | 值 |
 |------|-----|
 | 技术栈 | Laravel 12.x + React + Inertia.js |
+| UI 框架 | Shadcn/UI |
 | 测试覆盖率 | XX% |
 | 代码质量 | A/B/C |
 | 创建时间 | YYYY-MM-DD |
 | 最后更新 | YYYY-MM-DD |
+
 
 ## 功能清单
 

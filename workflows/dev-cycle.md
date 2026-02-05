@@ -23,11 +23,15 @@ update_blueprint: true # 完成后更新蓝图
 1. 分析需求
 2. 编写测试 (RED)
 3. 实现代码 (GREEN)
-4. 重构 (REFACTOR)
-5. 覆盖率检查
-6. 提交代码
+4. **实现 UI (Shadcn)**
+   - 使用 `skills/shadcn-ui` 组件
+   - 遵循既定布局模式
+5. 重构 (REFACTOR)
+6. 覆盖率检查
+7. 提交代码
 
-> 参考: `workflows/laravel-tdd-dev.md`
+> 参考: `workflows/laravel-tdd-dev.md`, `skills/shadcn-ui/SKILL.md`
+
 
 ---
 

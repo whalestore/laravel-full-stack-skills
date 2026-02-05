@@ -29,6 +29,7 @@ laravel-full-stack-skills/
 │   ├── laravel-tdd/         # TDD 最佳实践
 │   ├── laravel-api/         # API Resource, Sanctum
 │   ├── inertia-react/       # Inertia.js + React 模式
+│   ├── shadcn-ui/           # Shadcn/UI 组件库集成
 │   ├── multi-model-review/  # 多模型审查配置
 │   ├── auto-fix-loop/       # 自动修复循环控制
 │   ├── frontend-patterns/   # 前端最佳实践
@@ -38,12 +39,14 @@ laravel-full-stack-skills/
 │   ├── blueprint.md         # 项目监控
 │   ├── laravel-tdd-dev.md   # TDD 开发
 │   ├── code-review.md       # 多模型审查
-│   └── dev-cycle.md         # TDD + 审查组合
+│   ├── dev-cycle.md         # TDD + 审查组合
+│   └── saas-landing.md      # SaaS 主页生成
 ├── commands/                # 斜杠命令
 │   ├── blueprint.md         # /blueprint
 │   ├── tdd-dev.md           # /tdd-dev
 │   ├── code-review-loop.md  # /code-review
-│   └── dev-cycle.md         # /dev-cycle
+│   ├── dev-cycle.md         # /dev-cycle
+│   └── saas-landing.md      # /saas-landing
 ├── agents/                  # Agent 配置
 │   ├── tdd-guide.md         # TDD 专家
 │   ├── code-reviewer.md     # 代码审查员
@@ -238,6 +241,37 @@ git submodule add https://github.com/whalestore/laravel-full-stack-skills.git .a
 
 ---
 
+### 5. SaaS 主页生成 (`/saas-landing`)
+
+从 Stitch 设计项目生成完整的 SaaS 主页。
+
+```
+/saas-landing [--design <路径>] [--video]
+```
+
+**工作流步骤：**
+
+| 步骤 | 描述 |
+|------|------|
+| 1 | 识别 Stitch 设计资产 |
+| 2 | 生成 DESIGN.md 设计文档 |
+| 3 | 增强提示词 |
+| 4 | 生成 React 组件 |
+| 5 | 组装完整主页 |
+| 6 | 验证与调整 |
+| 7 | 生成演示视频 (可选) |
+
+**前置技能：**
+```bash
+npx skills add google-labs-code/stitch-skills --skill design-md --global
+npx skills add google-labs-code/stitch-skills --skill react:components --global
+npx skills add google-labs-code/stitch-skills --skill stitch-loop --global
+npx skills add google-labs-code/stitch-skills --skill enhance-prompt --global
+```
+
+---
+
+
 ## 🛠 技能参考
 
 ### Laravel 技能
@@ -249,6 +283,8 @@ git submodule add https://github.com/whalestore/laravel-full-stack-skills.git .a
 | `laravel-tdd` | PHPUnit/Pest、TDD 工作流 |
 | `laravel-api` | API Resource、Sanctum 认证 |
 | `inertia-react` | 页面组件、表单、路由 |
+| `shadcn-ui` | Shadcn/UI 组件库集成 |
+
 
 ### 审查技能
 
