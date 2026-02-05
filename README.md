@@ -82,35 +82,33 @@ git submodule add https://github.com/whalestore/laravel-full-stack-skills.git .a
 
 ### 1. Project Blueprint (`/blueprint`)
 
-Generate and maintain a project blueprint document tracking development progress.
+Generate, scan, or modify project blueprint documents.
 
-```
+**Three Modes:**
+
+| Mode | Description |
+|------|-------------|
+| `--new <desc>` | Create blueprint from prompt |
+| `--scan` | Scan existing project (default) |
+| `--edit` | Interactive modification |
+
+**Examples:**
+```bash
+# Create from prompt
+/blueprint --new "E-commerce platform with multi-store support"
+
+# Scan existing project
 /blueprint
+
+# Interactive edit
+/blueprint --edit
 ```
 
-**What it does:**
-- Scans project structure (app/, routes/, resources/)
-- Identifies feature modules from routes
-- Analyzes test coverage
-- Evaluates code quality
-- Generates `blueprint.md` with progress tracking
+**Interactive Commands (--edit mode):**
+- `添加功能: Payment Integration` - Add feature
+- `更新进度: User Auth -> 100%` - Update progress
+- `添加待办: Implement notifications` - Add todo
 
-**Output Example:**
-```markdown
-# Project Blueprint: MyApp
-
-| Metric | Value |
-|--------|-------|
-| Tech Stack | Laravel 12.x + React |
-| Test Coverage | 85% |
-| Code Quality | A |
-
-## Features
-| Feature | Status | Progress | Coverage |
-|---------|--------|----------|----------|
-| User Auth | 🟢 Done | 100% | 90% |
-| Orders | 🟡 WIP | 60% | 45% |
-```
 
 ---
 
