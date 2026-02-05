@@ -1,552 +1,325 @@
-**Language:** English | [繁體中文](docs/zh-TW/README.md)
+# Laravel Full-Stack Skills
 
-# Everything Claude Code
-
-[![Stars](https://img.shields.io/github/stars/affaan-m/everything-claude-code?style=flat)](https://github.com/affaan-m/everything-claude-code/stargazers)
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
-![Shell](https://img.shields.io/badge/-Shell-4EAA25?logo=gnu-bash&logoColor=white)
-![TypeScript](https://img.shields.io/badge/-TypeScript-3178C6?logo=typescript&logoColor=white)
-![Go](https://img.shields.io/badge/-Go-00ADD8?logo=go&logoColor=white)
-![Markdown](https://img.shields.io/badge/-Markdown-000000?logo=markdown&logoColor=white)
+![Laravel](https://img.shields.io/badge/-Laravel-FF2D20?logo=laravel&logoColor=white)
+![React](https://img.shields.io/badge/-React-61DAFB?logo=react&logoColor=black)
+![Inertia.js](https://img.shields.io/badge/-Inertia.js-9553E9?logo=inertia&logoColor=white)
+
+**Language:** English | [中文](README.zh-CN.md)
+
+A comprehensive skill pack for **Laravel + React (Inertia.js)** development with **Test-Driven Development (TDD)** workflows and **Multi-Model Code Review** automation.
+
+## ✨ Features
+
+- 🎯 **Laravel-focused skills** - Patterns, API design, Eloquent, Boost integration
+- 🔄 **TDD Workflow** - Strict RED-GREEN-REFACTOR cycle with 80%+ coverage
+- 🤖 **Multi-Model Review** - Parallel code review with Gemini/Codex/Zhipu
+- 🔧 **Auto-Fix Loop** - Automatic issue fixing with retry limits
+- 📊 **Project Blueprint** - Track progress and quality metrics
 
 ---
 
-<div align="center">
+## 📁 Project Structure
 
-**🌐 Language / 语言 / 語言**
-
-[**English**](README.md) | [简体中文](README.zh-CN.md) | [繁體中文](docs/zh-TW/README.md)
-
-</div>
-
----
-
-**The complete collection of Claude Code configs from an Anthropic hackathon winner.**
-
-Production-ready agents, skills, hooks, commands, rules, and MCP configurations evolved over 10+ months of intensive daily use building real products.
-
----
-
-## The Guides
-
-This repo is the raw code only. The guides explain everything.
-
-<table>
-<tr>
-<td width="50%">
-<a href="https://x.com/affaanmustafa/status/2012378465664745795">
-<img src="https://github.com/user-attachments/assets/1a471488-59cc-425b-8345-5245c7efbcef" alt="The Shorthand Guide to Everything Claude Code" />
-</a>
-</td>
-<td width="50%">
-<a href="https://x.com/affaanmustafa/status/2014040193557471352">
-<img src="https://github.com/user-attachments/assets/c9ca43bc-b149-427f-b551-af6840c368f0" alt="The Longform Guide to Everything Claude Code" />
-</a>
-</td>
-</tr>
-<tr>
-<td align="center"><b>Shorthand Guide</b><br/>Setup, foundations, philosophy. <b>Read this first.</b></td>
-<td align="center"><b>Longform Guide</b><br/>Token optimization, memory persistence, evals, parallelization.</td>
-</tr>
-</table>
-
-| Topic | What You'll Learn |
-|-------|-------------------|
-| Token Optimization | Model selection, system prompt slimming, background processes |
-| Memory Persistence | Hooks that save/load context across sessions automatically |
-| Continuous Learning | Auto-extract patterns from sessions into reusable skills |
-| Verification Loops | Checkpoint vs continuous evals, grader types, pass@k metrics |
-| Parallelization | Git worktrees, cascade method, when to scale instances |
-| Subagent Orchestration | The context problem, iterative retrieval pattern |
+```
+laravel-full-stack-skills/
+├── skills/                  # AI Skills (SKILL.md files)
+│   ├── laravel-boost/       # Laravel Boost MCP integration
+│   ├── laravel-patterns/    # Architecture patterns
+│   ├── laravel-tdd/         # TDD best practices
+│   ├── laravel-api/         # API Resource, Sanctum
+│   ├── inertia-react/       # Inertia.js + React patterns
+│   ├── multi-model-review/  # Multi-model review config
+│   ├── auto-fix-loop/       # Auto-fix loop control
+│   ├── frontend-patterns/   # Frontend best practices
+│   ├── postgres-patterns/   # PostgreSQL patterns
+│   └── security-review/     # Security review checklist
+├── workflows/               # Development Workflows
+│   ├── blueprint.md         # Project monitoring
+│   ├── laravel-tdd-dev.md   # TDD development
+│   ├── code-review.md       # Multi-model review
+│   └── dev-cycle.md         # Combined TDD + Review
+├── commands/                # Slash Commands
+│   ├── blueprint.md         # /blueprint
+│   ├── tdd-dev.md           # /tdd-dev
+│   ├── code-review-loop.md  # /code-review
+│   └── dev-cycle.md         # /dev-cycle
+├── agents/                  # Agent Configurations
+│   ├── tdd-guide.md         # TDD specialist
+│   ├── code-reviewer.md     # Code reviewer
+│   ├── security-reviewer.md # Security specialist
+│   └── database-reviewer.md # Database specialist
+└── rules/                   # Code Standards
+```
 
 ---
 
 ## 🚀 Quick Start
 
-Get up and running in under 2 minutes:
+### Installation
 
-### Step 1: Install the Plugin
-
-```bash
-# Add marketplace
-/plugin marketplace add affaan-m/everything-claude-code
-
-# Install plugin
-/plugin install everything-claude-code@everything-claude-code
-```
-
-### Step 2: Install Rules (Required)
-
-> ⚠️ **Important:** Claude Code plugins cannot distribute `rules` automatically. Install them manually:
+1. Clone this repository into your project:
 
 ```bash
-# Clone the repo first
-git clone https://github.com/affaan-m/everything-claude-code.git
-
-# Copy rules (applies to all projects)
-cp -r everything-claude-code/rules/* ~/.claude/rules/
+git clone https://github.com/whalestore/laravel-full-stack-skills.git .ai/skills
 ```
 
-### Step 3: Start Using
+2. Or add as a Git submodule:
 
 ```bash
-# Try a command
-/plan "Add user authentication"
-
-# Check available commands
-/plugin list everything-claude-code@everything-claude-code
+git submodule add https://github.com/whalestore/laravel-full-stack-skills.git .ai/skills
 ```
 
-✨ **That's it!** You now have access to 15+ agents, 30+ skills, and 20+ commands.
+### Using with Antigravity
+
+1. Open Antigravity editor
+2. The skills will be automatically loaded from `.ai/skills/` directory
+3. Use slash commands to trigger workflows
 
 ---
 
-## 🌐 Cross-Platform Support
+## 📋 Workflows
 
-This plugin now fully supports **Windows, macOS, and Linux**. All hooks and scripts have been rewritten in Node.js for maximum compatibility.
+### 1. Project Blueprint (`/blueprint`)
 
-### Package Manager Detection
-
-The plugin automatically detects your preferred package manager (npm, pnpm, yarn, or bun) with the following priority:
-
-1. **Environment variable**: `CLAUDE_PACKAGE_MANAGER`
-2. **Project config**: `.claude/package-manager.json`
-3. **package.json**: `packageManager` field
-4. **Lock file**: Detection from package-lock.json, yarn.lock, pnpm-lock.yaml, or bun.lockb
-5. **Global config**: `~/.claude/package-manager.json`
-6. **Fallback**: First available package manager
-
-To set your preferred package manager:
-
-```bash
-# Via environment variable
-export CLAUDE_PACKAGE_MANAGER=pnpm
-
-# Via global config
-node scripts/setup-package-manager.js --global pnpm
-
-# Via project config
-node scripts/setup-package-manager.js --project bun
-
-# Detect current setting
-node scripts/setup-package-manager.js --detect
-```
-
-Or use the `/setup-pm` command in Claude Code.
-
----
-
-## 📦 What's Inside
-
-This repo is a **Claude Code plugin** - install it directly or copy components manually.
+Generate and maintain a project blueprint document tracking development progress.
 
 ```
-everything-claude-code/
-|-- .claude-plugin/   # Plugin and marketplace manifests
-|   |-- plugin.json         # Plugin metadata and component paths
-|   |-- marketplace.json    # Marketplace catalog for /plugin marketplace add
-|
-|-- agents/           # Specialized subagents for delegation
-|   |-- planner.md           # Feature implementation planning
-|   |-- architect.md         # System design decisions
-|   |-- tdd-guide.md         # Test-driven development
-|   |-- code-reviewer.md     # Quality and security review
-|   |-- security-reviewer.md # Vulnerability analysis
-|   |-- build-error-resolver.md
-|   |-- e2e-runner.md        # Playwright E2E testing
-|   |-- refactor-cleaner.md  # Dead code cleanup
-|   |-- doc-updater.md       # Documentation sync
-|   |-- go-reviewer.md       # Go code review (NEW)
-|   |-- go-build-resolver.md # Go build error resolution (NEW)
-|
-|-- skills/           # Workflow definitions and domain knowledge
-|   |-- coding-standards/           # Language best practices
-|   |-- backend-patterns/           # API, database, caching patterns
-|   |-- frontend-patterns/          # React, Next.js patterns
-|   |-- continuous-learning/        # Auto-extract patterns from sessions (Longform Guide)
-|   |-- continuous-learning-v2/     # Instinct-based learning with confidence scoring
-|   |-- iterative-retrieval/        # Progressive context refinement for subagents
-|   |-- strategic-compact/          # Manual compaction suggestions (Longform Guide)
-|   |-- tdd-workflow/               # TDD methodology
-|   |-- security-review/            # Security checklist
-|   |-- eval-harness/               # Verification loop evaluation (Longform Guide)
-|   |-- verification-loop/          # Continuous verification (Longform Guide)
-|   |-- golang-patterns/            # Go idioms and best practices (NEW)
-|   |-- golang-testing/             # Go testing patterns, TDD, benchmarks (NEW)
-|
-|-- commands/         # Slash commands for quick execution
-|   |-- tdd.md              # /tdd - Test-driven development
-|   |-- plan.md             # /plan - Implementation planning
-|   |-- e2e.md              # /e2e - E2E test generation
-|   |-- code-review.md      # /code-review - Quality review
-|   |-- build-fix.md        # /build-fix - Fix build errors
-|   |-- refactor-clean.md   # /refactor-clean - Dead code removal
-|   |-- learn.md            # /learn - Extract patterns mid-session (Longform Guide)
-|   |-- checkpoint.md       # /checkpoint - Save verification state (Longform Guide)
-|   |-- verify.md           # /verify - Run verification loop (Longform Guide)
-|   |-- setup-pm.md         # /setup-pm - Configure package manager
-|   |-- go-review.md        # /go-review - Go code review (NEW)
-|   |-- go-test.md          # /go-test - Go TDD workflow (NEW)
-|   |-- go-build.md         # /go-build - Fix Go build errors (NEW)
-|   |-- skill-create.md     # /skill-create - Generate skills from git history (NEW)
-|   |-- instinct-status.md  # /instinct-status - View learned instincts (NEW)
-|   |-- instinct-import.md  # /instinct-import - Import instincts (NEW)
-|   |-- instinct-export.md  # /instinct-export - Export instincts (NEW)
-|   |-- evolve.md           # /evolve - Cluster instincts into skills (NEW)
-|
-|-- rules/            # Always-follow guidelines (copy to ~/.claude/rules/)
-|   |-- security.md         # Mandatory security checks
-|   |-- coding-style.md     # Immutability, file organization
-|   |-- testing.md          # TDD, 80% coverage requirement
-|   |-- git-workflow.md     # Commit format, PR process
-|   |-- agents.md           # When to delegate to subagents
-|   |-- performance.md      # Model selection, context management
-|
-|-- hooks/            # Trigger-based automations
-|   |-- hooks.json                # All hooks config (PreToolUse, PostToolUse, Stop, etc.)
-|   |-- memory-persistence/       # Session lifecycle hooks (Longform Guide)
-|   |-- strategic-compact/        # Compaction suggestions (Longform Guide)
-|
-|-- scripts/          # Cross-platform Node.js scripts (NEW)
-|   |-- lib/                     # Shared utilities
-|   |   |-- utils.js             # Cross-platform file/path/system utilities
-|   |   |-- package-manager.js   # Package manager detection and selection
-|   |-- hooks/                   # Hook implementations
-|   |   |-- session-start.js     # Load context on session start
-|   |   |-- session-end.js       # Save state on session end
-|   |   |-- pre-compact.js       # Pre-compaction state saving
-|   |   |-- suggest-compact.js   # Strategic compaction suggestions
-|   |   |-- evaluate-session.js  # Extract patterns from sessions
-|   |-- setup-package-manager.js # Interactive PM setup
-|
-|-- tests/            # Test suite (NEW)
-|   |-- lib/                     # Library tests
-|   |-- hooks/                   # Hook tests
-|   |-- run-all.js               # Run all tests
-|
-|-- contexts/         # Dynamic system prompt injection contexts (Longform Guide)
-|   |-- dev.md              # Development mode context
-|   |-- review.md           # Code review mode context
-|   |-- research.md         # Research/exploration mode context
-|
-|-- examples/         # Example configurations and sessions
-|   |-- CLAUDE.md           # Example project-level config
-|   |-- user-CLAUDE.md      # Example user-level config
-|
-|-- mcp-configs/      # MCP server configurations
-|   |-- mcp-servers.json    # GitHub, Supabase, Vercel, Railway, etc.
-|
-|-- marketplace.json  # Self-hosted marketplace config (for /plugin marketplace add)
+/blueprint
+```
+
+**What it does:**
+- Scans project structure (app/, routes/, resources/)
+- Identifies feature modules from routes
+- Analyzes test coverage
+- Evaluates code quality
+- Generates `blueprint.md` with progress tracking
+
+**Output Example:**
+```markdown
+# Project Blueprint: MyApp
+
+| Metric | Value |
+|--------|-------|
+| Tech Stack | Laravel 12.x + React |
+| Test Coverage | 85% |
+| Code Quality | A |
+
+## Features
+| Feature | Status | Progress | Coverage |
+|---------|--------|----------|----------|
+| User Auth | 🟢 Done | 100% | 90% |
+| Orders | 🟡 WIP | 60% | 45% |
 ```
 
 ---
 
-## 🛠️ Ecosystem Tools
+### 2. TDD Development (`/tdd-dev`)
 
-### Skill Creator
+Strict Test-Driven Development workflow with RED-GREEN-REFACTOR cycle.
 
-Two ways to generate Claude Code skills from your repository:
-
-#### Option A: Local Analysis (Built-in)
-
-Use the `/skill-create` command for local analysis without external services:
-
-```bash
-/skill-create                    # Analyze current repo
-/skill-create --instincts        # Also generate instincts for continuous-learning
+```
+/tdd-dev <feature description>
 ```
 
-This analyzes your git history locally and generates SKILL.md files.
+**Workflow Steps:**
 
-#### Option B: GitHub App (Advanced)
+| Step | Phase | Description |
+|------|-------|-------------|
+| 1 | Analyze | Parse requirements |
+| 2 | RED | Write failing test |
+| 3 | GREEN | Implement minimal code |
+| 4 | REFACTOR | Optimize code |
+| 5 | Coverage | Ensure 80%+ coverage |
+| 6 | Browser Test | Optional: Antigravity browser test |
+| 7 | Mobile Test | Optional: Maestro MCP test |
+| 8 | Commit | Auto commit with message |
 
-For advanced features (10k+ commits, auto-PRs, team sharing):
-
-[Install GitHub App](https://github.com/apps/skill-creator) | [ecc.tools](https://ecc.tools)
-
+**Example:**
 ```bash
-# Comment on any issue:
-/skill-creator analyze
-
-# Or auto-triggers on push to default branch
+/tdd-dev Implement product search with filters
 ```
 
-Both options create:
-- **SKILL.md files** - Ready-to-use skills for Claude Code
-- **Instinct collections** - For continuous-learning-v2
-- **Pattern extraction** - Learns from your commit history
-
-### 🧠 Continuous Learning v2
-
-The instinct-based learning system automatically learns your patterns:
-
-```bash
-/instinct-status        # Show learned instincts with confidence
-/instinct-import <file> # Import instincts from others
-/instinct-export        # Export your instincts for sharing
-/evolve                 # Cluster related instincts into skills
+**TDD Cycle:**
 ```
-
-See `skills/continuous-learning-v2/` for full documentation.
+┌─────────┐     ┌─────────┐     ┌──────────┐
+│   RED   │ ──→ │  GREEN  │ ──→ │ REFACTOR │
+│Write Test│     │ Minimal │     │ Optimize │
+│ (Fails) │     │  Code   │     │   Code   │
+└─────────┘     └─────────┘     └──────────┘
+      ↑                               │
+      └───────────────────────────────┘
+              Next Test Case
+```
 
 ---
 
-## 📋 Requirements
+### 3. Code Review (`/code-review`)
 
-### Claude Code CLI Version
-
-**Minimum version: v2.1.0 or later**
-
-This plugin requires Claude Code CLI v2.1.0+ due to changes in how the plugin system handles hooks.
-
-Check your version:
-```bash
-claude --version
-```
-
-### Important: Hooks Auto-Loading Behavior
-
-> ⚠️ **For Contributors:** Do NOT add a `"hooks"` field to `.claude-plugin/plugin.json`. This is enforced by a regression test.
-
-Claude Code v2.1+ **automatically loads** `hooks/hooks.json` from any installed plugin by convention. Explicitly declaring it in `plugin.json` causes a duplicate detection error:
+Multi-model parallel code review with automatic fix loop.
 
 ```
-Duplicate hooks file detected: ./hooks/hooks.json resolves to already-loaded file
+/code-review [--range=<ref>] [--max-retries=<n>]
 ```
 
-**History:** This has caused repeated fix/revert cycles in this repo ([#29](https://github.com/affaan-m/everything-claude-code/issues/29), [#52](https://github.com/affaan-m/everything-claude-code/issues/52), [#103](https://github.com/affaan-m/everything-claude-code/issues/103)). The behavior changed between Claude Code versions, leading to confusion. We now have a regression test to prevent this from being reintroduced.
+**Review Process:**
+
+```
+                 ┌──────────────────────┐
+                 │   Collect Changes    │
+                 └──────────┬───────────┘
+                            │
+         ┌──────────────────┼──────────────────┐
+         ▼                  ▼                  ▼
+   ┌───────────┐      ┌───────────┐      ┌───────────┐
+   │  Gemini   │      │   Codex   │      │   Zhipu   │
+   │Architecture│      │ Security  │      │Code Style │
+   └─────┬─────┘      └─────┬─────┘      └─────┬─────┘
+         │                  │                  │
+         └──────────────────┼──────────────────┘
+                            ▼
+                 ┌──────────────────────┐
+                 │   Aggregate Issues   │
+                 │   Priority: C/H/M/L  │
+                 └──────────┬───────────┘
+                            │
+            ┌───────────────┼───────────────┐
+            ▼               ▼               ▼
+         No Issues      Fixable       Critical
+            │               │               │
+            ▼               ▼               ▼
+          Pass ✅      Auto-Fix 🔄    Human 🛑
+                            │
+                     (max 3 retries)
+```
+
+**Priority Levels:**
+
+| Level | Description | Action |
+|-------|-------------|--------|
+| 🔴 Critical | Security vulnerabilities | Human intervention |
+| 🟠 High | Performance, logic errors | Auto-fix |
+| 🟡 Medium | Code quality | Auto-fix |
+| 🟢 Low | Suggestions | Optional |
 
 ---
 
-## 📥 Installation
+### 4. Complete Dev Cycle (`/dev-cycle`)
 
-### Option 1: Install as Plugin (Recommended)
+Combined TDD + Code Review workflow.
 
-The easiest way to use this repo - install as a Claude Code plugin:
-
-```bash
-# Add this repo as a marketplace
-/plugin marketplace add affaan-m/everything-claude-code
-
-# Install the plugin
-/plugin install everything-claude-code@everything-claude-code
+```
+/dev-cycle <feature description>
 ```
 
-Or add directly to your `~/.claude/settings.json`:
+**Complete Flow:**
+
+```
+┌─────────────────────────────────────────────────┐
+│            Phase 1: TDD Development             │
+│         RED → GREEN → REFACTOR → Test           │
+└────────────────────────┬────────────────────────┘
+                         │
+                         ▼
+┌─────────────────────────────────────────────────┐
+│            Phase 2: Code Review                 │
+│       Multi-Model Review → Auto-Fix Loop        │
+└────────────────────────┬────────────────────────┘
+                         │
+          ┌──────────────┼──────────────┐
+          ▼              ▼              ▼
+       Pass ✅      Need Fix 🔄    Need Human 🛑
+          │              │              │
+          │         Back to Phase 1     │
+          │         (fix issues)    Stop & Report
+          ▼
+┌─────────────────────────────────────────────────┐
+│            Phase 3: Update Blueprint            │
+│           Record progress & metrics             │
+└─────────────────────────────────────────────────┘
+```
+
+---
+
+## 🛠 Skills Reference
+
+### Laravel Skills
+
+| Skill | Description |
+|-------|-------------|
+| `laravel-boost` | MCP Server integration, AI guidelines |
+| `laravel-patterns` | Controllers, Services, Repository |
+| `laravel-tdd` | PHPUnit/Pest, TDD workflow |
+| `laravel-api` | API Resource, Sanctum auth |
+| `inertia-react` | Page components, forms, routing |
+
+### Review Skills
+
+| Skill | Description |
+|-------|-------------|
+| `multi-model-review` | Configure multiple review models |
+| `auto-fix-loop` | Automatic fix loop control |
+| `security-review` | Security checklist |
+
+---
+
+## 🔧 Using with Antigravity
+
+### Setup
+
+1. **Clone skills to your project:**
+   ```bash
+   cd your-laravel-project
+   git clone https://github.com/whalestore/laravel-full-stack-skills.git .ai/skills
+   ```
+
+2. **Open with Antigravity:**
+   - Launch Antigravity editor
+   - Open your Laravel project
+   - Skills are automatically detected
+
+### Commands
+
+Type these commands in Antigravity chat:
+
+| Command | Description |
+|---------|-------------|
+| `/blueprint` | Generate project blueprint |
+| `/tdd-dev <feature>` | Start TDD development |
+| `/code-review` | Run code review |
+| `/dev-cycle <feature>` | Complete dev cycle |
+
+### Browser Testing
+
+The TDD workflow supports Antigravity's built-in browser tools:
+
+1. When developing web pages, browser tests run automatically
+2. Screenshots and recordings are saved for validation
+3. UI flows are verified against expected behavior
+
+### MCP Integration
+
+Configure Laravel Boost MCP in your project:
 
 ```json
 {
-  "extraKnownMarketplaces": {
-    "everything-claude-code": {
-      "source": {
-        "source": "github",
-        "repo": "affaan-m/everything-claude-code"
-      }
+  "mcpServers": {
+    "laravel-boost": {
+      "command": "php",
+      "args": ["artisan", "boost:mcp"]
     }
-  },
-  "enabledPlugins": {
-    "everything-claude-code@everything-claude-code": true
   }
 }
 ```
-
-This gives you instant access to all commands, agents, skills, and hooks.
-
-> **Note:** The Claude Code plugin system does not support distributing `rules` via plugins ([upstream limitation](https://code.claude.com/docs/en/plugins-reference)). You need to install rules manually:
->
-> ```bash
-> # Clone the repo first
-> git clone https://github.com/affaan-m/everything-claude-code.git
->
-> # Option A: User-level rules (applies to all projects)
-> cp -r everything-claude-code/rules/* ~/.claude/rules/
->
-> # Option B: Project-level rules (applies to current project only)
-> mkdir -p .claude/rules
-> cp -r everything-claude-code/rules/* .claude/rules/
-> ```
-
----
-
-### 🔧 Option 2: Manual Installation
-
-If you prefer manual control over what's installed:
-
-```bash
-# Clone the repo
-git clone https://github.com/affaan-m/everything-claude-code.git
-
-# Copy agents to your Claude config
-cp everything-claude-code/agents/*.md ~/.claude/agents/
-
-# Copy rules
-cp everything-claude-code/rules/*.md ~/.claude/rules/
-
-# Copy commands
-cp everything-claude-code/commands/*.md ~/.claude/commands/
-
-# Copy skills
-cp -r everything-claude-code/skills/* ~/.claude/skills/
-```
-
-#### Add hooks to settings.json
-
-Copy the hooks from `hooks/hooks.json` to your `~/.claude/settings.json`.
-
-#### Configure MCPs
-
-Copy desired MCP servers from `mcp-configs/mcp-servers.json` to your `~/.claude.json`.
-
-**Important:** Replace `YOUR_*_HERE` placeholders with your actual API keys.
-
----
-
-## 🎯 Key Concepts
-
-### Agents
-
-Subagents handle delegated tasks with limited scope. Example:
-
-```markdown
----
-name: code-reviewer
-description: Reviews code for quality, security, and maintainability
-tools: ["Read", "Grep", "Glob", "Bash"]
-model: opus
----
-
-You are a senior code reviewer...
-```
-
-### Skills
-
-Skills are workflow definitions invoked by commands or agents:
-
-```markdown
-# TDD Workflow
-
-1. Define interfaces first
-2. Write failing tests (RED)
-3. Implement minimal code (GREEN)
-4. Refactor (IMPROVE)
-5. Verify 80%+ coverage
-```
-
-### Hooks
-
-Hooks fire on tool events. Example - warn about console.log:
-
-```json
-{
-  "matcher": "tool == \"Edit\" && tool_input.file_path matches \"\\\\.(ts|tsx|js|jsx)$\"",
-  "hooks": [{
-    "type": "command",
-    "command": "#!/bin/bash\ngrep -n 'console\\.log' \"$file_path\" && echo '[Hook] Remove console.log' >&2"
-  }]
-}
-```
-
-### Rules
-
-Rules are always-follow guidelines. Keep them modular:
-
-```
-~/.claude/rules/
-  security.md      # No hardcoded secrets
-  coding-style.md  # Immutability, file limits
-  testing.md       # TDD, coverage requirements
-```
-
----
-
-## 🧪 Running Tests
-
-The plugin includes a comprehensive test suite:
-
-```bash
-# Run all tests
-node tests/run-all.js
-
-# Run individual test files
-node tests/lib/utils.test.js
-node tests/lib/package-manager.test.js
-node tests/hooks/hooks.test.js
-```
-
----
-
-## 🤝 Contributing
-
-**Contributions are welcome and encouraged.**
-
-This repo is meant to be a community resource. If you have:
-- Useful agents or skills
-- Clever hooks
-- Better MCP configurations
-- Improved rules
-
-Please contribute! See [CONTRIBUTING.md](CONTRIBUTING.md) for guidelines.
-
-### Ideas for Contributions
-
-- Language-specific skills (Python, Rust patterns) - Go now included!
-- Framework-specific configs (Django, Rails, Laravel)
-- DevOps agents (Kubernetes, Terraform, AWS)
-- Testing strategies (different frameworks)
-- Domain-specific knowledge (ML, data engineering, mobile)
-
----
-
-## 📖 Background
-
-I've been using Claude Code since the experimental rollout. Won the Anthropic x Forum Ventures hackathon in Sep 2025 building [zenith.chat](https://zenith.chat) with [@DRodriguezFX](https://x.com/DRodriguezFX) - entirely using Claude Code.
-
-These configs are battle-tested across multiple production applications.
-
----
-
-## ⚠️ Important Notes
-
-### Context Window Management
-
-**Critical:** Don't enable all MCPs at once. Your 200k context window can shrink to 70k with too many tools enabled.
-
-Rule of thumb:
-- Have 20-30 MCPs configured
-- Keep under 10 enabled per project
-- Under 80 tools active
-
-Use `disabledMcpServers` in project config to disable unused ones.
-
-### Customization
-
-These configs work for my workflow. You should:
-1. Start with what resonates
-2. Modify for your stack
-3. Remove what you don't use
-4. Add your own patterns
-
----
-
-## 🌟 Star History
-
-[![Star History Chart](https://api.star-history.com/svg?repos=affaan-m/everything-claude-code&type=Date)](https://star-history.com/#affaan-m/everything-claude-code&Date)
-
----
-
-## 🔗 Links
-
-- **Shorthand Guide (Start Here):** [The Shorthand Guide to Everything Claude Code](https://x.com/affaanmustafa/status/2012378465664745795)
-- **Longform Guide (Advanced):** [The Longform Guide to Everything Claude Code](https://x.com/affaanmustafa/status/2014040193557471352)
-- **Follow:** [@affaanmustafa](https://x.com/affaanmustafa)
-- **zenith.chat:** [zenith.chat](https://zenith.chat)
 
 ---
 
 ## 📄 License
 
-MIT - Use freely, modify as needed, contribute back if you can.
+MIT License - see [LICENSE](LICENSE) file.
 
 ---
 
-**Star this repo if it helps. Read both guides. Build something great.**
+## 🙏 Credits
+
+Based on [everything-claude-code](https://github.com/affaan-m/everything-claude-code), adapted for Laravel full-stack development.
