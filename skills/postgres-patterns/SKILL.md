@@ -1,98 +1,79 @@
 ---
 name: postgres-patterns
-description: PostgreSQL database patterns for query optimization, schema design, indexing, and security. Based on Supabase best practices.
+description: PostgreSQL 数据库模式，涵盖查询优化、Schema 设计、索引和 Laravel Eloquent 集成。
 ---
 
-# PostgreSQL Patterns
+# PostgreSQL Patterns (Laravel Optimized)
 
-Quick reference for PostgreSQL best practices. For detailed guidance, use the `database-reviewer` agent.
+PostgreSQL 最佳实践手册，特别针对 Laravel Eloquent ORM 进行优化。
 
-## When to Activate
+## Laravel 与 Postgres 集成
 
-- Writing SQL queries or migrations
-- Designing database schemas
-- Troubleshooting slow queries
-- Implementing Row Level Security
-- Setting up connection pooling
+### 1. 数据库迁移 (Migrations)
 
-## Quick Reference
+```php
+// ✅ 推荐：使用 JSONB 存储半结构化数据
+$table->jsonb('meta_data')->default('{}');
 
-### Index Cheat Sheet
-
-| Query Pattern | Index Type | Example |
-|--------------|------------|---------|
-| `WHERE col = value` | B-tree (default) | `CREATE INDEX idx ON t (col)` |
-| `WHERE col > value` | B-tree | `CREATE INDEX idx ON t (col)` |
-| `WHERE a = x AND b > y` | Composite | `CREATE INDEX idx ON t (a, b)` |
-| `WHERE jsonb @> '{}'` | GIN | `CREATE INDEX idx ON t USING gin (col)` |
-| `WHERE tsv @@ query` | GIN | `CREATE INDEX idx ON t USING gin (col)` |
-| Time-series ranges | BRIN | `CREATE INDEX idx ON t USING brin (col)` |
-
-### Data Type Quick Reference
-
-| Use Case | Correct Type | Avoid |
-|----------|-------------|-------|
-| IDs | `bigint` | `int`, random UUID |
-| Strings | `text` | `varchar(255)` |
-| Timestamps | `timestamptz` | `timestamp` |
-| Money | `numeric(10,2)` | `float` |
-| Flags | `boolean` | `varchar`, `int` |
-
-### Common Patterns
-
-**Composite Index Order:**
-```sql
--- Equality columns first, then range columns
-CREATE INDEX idx ON orders (status, created_at);
--- Works for: WHERE status = 'pending' AND created_at > '2024-01-01'
+// ✅ 推荐：为经常查询的字段添加索引
+$table->index(['user_id', 'created_at']);
 ```
 
-**Covering Index:**
-```sql
-CREATE INDEX idx ON users (email) INCLUDE (name, created_at);
--- Avoids table lookup for SELECT email, name, created_at
+### 2. Eloquent 性能优化
+
+```php
+// ❌ 避免: N+1 问题
+$orders = Order::all();
+foreach ($orders as $order) {
+    echo $order->user->name;
+}
+
+// ✅ 推荐: 预加载
+$orders = Order::with('user')->get();
 ```
 
-**Partial Index:**
-```sql
-CREATE INDEX idx ON users (email) WHERE deleted_at IS NULL;
--- Smaller index, only includes active users
+## 核心模式
+
+### 索引速查表
+
+| 查询模式 | 索引类型 | 示例 |
+|---------|---------|------|
+| `WHERE col = val` | B-tree | `INDEX (col)` |
+| `WHERE jsonb @> '{}'` | GIN | `INDEX USING gin (col)` |
+| `WHERE col LIKE '%val%'` | GIN (trgm) | `INDEX USING gin (col gin_trgm_ops)` |
+| 时间范围查询 | BRIN | `INDEX USING brin (col)` |
+
+### 常用 SQL 模式
+
+**复合索引顺序:**
+- 等值判断字段在前，范围查询字段在后。
+- `CREATE INDEX idx_status_created ON orders (status, created_at);`
+
+**UPSERT (Laravel 原生支持):**
+```php
+$user->updateOrCreate(
+    ['email' => 'test@example.com'],
+    ['name' => 'Test User']
+);
 ```
 
-**RLS Policy (Optimized):**
-```sql
-CREATE POLICY policy ON orders
-  USING ((SELECT auth.uid()) = user_id);  -- Wrap in SELECT!
+**游标分页 (适合大数据量):**
+```php
+$users = User::orderBy('id')->cursorPaginate(15);
 ```
 
-**UPSERT:**
+## 性能分析
+
+### 1. 分析慢查询
+
 ```sql
-INSERT INTO settings (user_id, key, value)
-VALUES (123, 'theme', 'dark')
-ON CONFLICT (user_id, key)
-DO UPDATE SET value = EXCLUDED.value;
+EXPLAIN ANALYZE SELECT * FROM orders WHERE user_id = 1;
 ```
 
-**Cursor Pagination:**
-```sql
-SELECT * FROM products WHERE id > $last_id ORDER BY id LIMIT 20;
--- O(1) vs OFFSET which is O(n)
-```
-
-**Queue Processing:**
-```sql
-UPDATE jobs SET status = 'processing'
-WHERE id = (
-  SELECT id FROM jobs WHERE status = 'pending'
-  ORDER BY created_at LIMIT 1
-  FOR UPDATE SKIP LOCKED
-) RETURNING *;
-```
-
-### Anti-Pattern Detection
+### 2. 检查未被引用的外键索引
 
 ```sql
--- Find unindexed foreign keys
+-- 查找没有索引的外键
 SELECT conrelid::regclass, a.attname
 FROM pg_constraint c
 JOIN pg_attribute a ON a.attrelid = c.conrelid AND a.attnum = ANY(c.conkey)
@@ -101,46 +82,15 @@ WHERE c.contype = 'f'
     SELECT 1 FROM pg_index i
     WHERE i.indrelid = c.conrelid AND a.attnum = ANY(i.indkey)
   );
-
--- Find slow queries
-SELECT query, mean_exec_time, calls
-FROM pg_stat_statements
-WHERE mean_exec_time > 100
-ORDER BY mean_exec_time DESC;
-
--- Check table bloat
-SELECT relname, n_dead_tup, last_vacuum
-FROM pg_stat_user_tables
-WHERE n_dead_tup > 1000
-ORDER BY n_dead_tup DESC;
 ```
 
-### Configuration Template
+## 数据库设计准则
 
-```sql
--- Connection limits (adjust for RAM)
-ALTER SYSTEM SET max_connections = 100;
-ALTER SYSTEM SET work_mem = '8MB';
-
--- Timeouts
-ALTER SYSTEM SET idle_in_transaction_session_timeout = '30s';
-ALTER SYSTEM SET statement_timeout = '30s';
-
--- Monitoring
-CREATE EXTENSION IF NOT EXISTS pg_stat_statements;
-
--- Security defaults
-REVOKE ALL ON SCHEMA public FROM public;
-
-SELECT pg_reload_conf();
-```
-
-## Related
-
-- Agent: `database-reviewer` - Full database review workflow
-- Skill: `clickhouse-io` - ClickHouse analytics patterns
-- Skill: `backend-patterns` - API and backend patterns
+- **UUID**: 适合分布式，但注意 B-tree 性能。
+- **JSONB**: 除非必要，否则优先使用结构化列。
+- **Timestamps**: 始终包含 `created_at` 和 `updated_at`。
+- **Soft Deletes**: 大型表考虑索引 `deleted_at` 字段。
 
 ---
 
-*Based on [Supabase Agent Skills](https://github.com/supabase/agent-skills) (MIT License)*
+*针对 Laravel 12.x 和 PostgreSQL 16+ 优化。*
